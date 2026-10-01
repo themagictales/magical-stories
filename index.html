@@ -1,0 +1,134 @@
+
+
+   <!DOCTYPE html>
+<html>
+<head>
+    <title>Magical Stories ✨</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            background: linear-gradient(135deg, #16002e, #3b176d, #12001f);
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 45px;
+        }
+
+        .post-box, .story-card {
+            background: rgba(255,255,255,0.12);
+            width: 350px;
+            margin: 25px auto;
+            padding: 25px;
+            border-radius: 20px;
+        }
+
+        input {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            max-width: 280px;
+        }
+
+        button {
+            background: #f5c542;
+            color: #25003d;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .story-card {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>✨ Magical Stories ✨</h1>
+        <p>Enter a world of magic, mystery and adventure 🔮</p>
+    </header>
+
+    <div class="post-box">
+
+        <h2>📚 Post Your Story</h2>
+
+        <p>Story Title:</p>
+
+        <input type="text" id="storyTitle"
+               placeholder="Enter story name">
+
+        <p>Choose your PDF:</p>
+
+        <input type="file" id="storyPDF" accept=".pdf">
+
+        <br><br>
+
+        <button onclick="postStory()">
+            ✨ Publish Story
+        </button>
+
+    </div>
+
+    <div class="story-card" id="storyCard">
+
+        <h2 id="displayTitle"></h2>
+
+        <p>📖 Magical story PDF</p>
+
+        <button onclick="readStory()">
+            📖 Read Story
+        </button>
+
+    </div>
+
+    <script>
+
+        let selectedPDF = null;
+
+        function postStory() {
+
+            let title =
+                document.getElementById("storyTitle").value;
+
+            selectedPDF =
+                document.getElementById("storyPDF").files[0];
+
+            if (title === "" || !selectedPDF) {
+                alert("Please enter a title and choose a PDF.");
+                return;
+            }
+
+            document.getElementById("displayTitle").innerText =
+                "🔮 " + title;
+
+            document.getElementById("storyCard").style.display =
+                "block";
+
+            alert("Story published! ✨");
+        }
+
+        function readStory() {
+
+            let pdfURL = URL.createObjectURL(selectedPDF);
+
+            window.open(pdfURL, "_blank");
+        }
+
+    </script>
+
+</body>
+</html>
